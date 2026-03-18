@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -20,8 +21,8 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 border-b border-border bg-card shadow-sm">
       <div className="container mx-auto flex items-center justify-between px-4 py-3">
-        <Link to="/" className="text-xl font-bold text-primary">
-          [061 PLUMBERS LOGO]
+        <Link to="/" className="flex items-center gap-2">
+          <img src={logo} alt="061 Plumbers" className="h-10 w-auto" />
         </Link>
 
         {/* Desktop nav */}
@@ -30,7 +31,7 @@ const Navbar = () => {
             <Link
               key={link.href}
               to={link.href}
-              className="rounded-md px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
+              className="rounded-md px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-accent"
             >
               {link.label}
             </Link>
@@ -38,10 +39,10 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button asChild variant="default" size="sm" className="hidden sm:inline-flex">
-            <a href="tel:placeholder">
+          <Button asChild size="sm" className="hidden sm:inline-flex bg-accent text-accent-foreground hover:bg-accent/90">
+            <a href="tel:+264857875100">
               <Phone className="mr-2 h-4 w-4" />
-              [CALL NOW]
+              Call Now
             </a>
           </Button>
           <button
@@ -62,15 +63,15 @@ const Navbar = () => {
               key={link.href}
               to={link.href}
               onClick={() => setOpen(false)}
-              className="block rounded-md px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-primary"
+              className="block rounded-md px-3 py-2 text-sm font-medium text-foreground hover:bg-muted hover:text-accent"
             >
               {link.label}
             </Link>
           ))}
-          <Button asChild variant="default" size="sm" className="mt-2 w-full sm:hidden">
-            <a href="tel:placeholder">
+          <Button asChild size="sm" className="mt-2 w-full sm:hidden bg-accent text-accent-foreground hover:bg-accent/90">
+            <a href="tel:+264857875100">
               <Phone className="mr-2 h-4 w-4" />
-              [CALL NOW]
+              Call Now
             </a>
           </Button>
         </div>

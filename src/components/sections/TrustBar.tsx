@@ -1,14 +1,20 @@
+import { Shield, Clock, FileText, MapPin } from "lucide-react";
+
+const badges = [
+  { icon: Clock, label: "24/7 Emergency Response" },
+  { icon: FileText, label: "Free Quotations" },
+  { icon: Shield, label: "Guaranteed Workmanship" },
+  { icon: MapPin, label: "Serving All of Windhoek" },
+];
+
 const TrustBar = () => (
   <section className="w-full border-y border-border bg-card py-8">
     <div className="container mx-auto px-4">
-      <span className="mb-4 block text-center text-xs font-bold uppercase tracking-widest text-muted-foreground">
-        TRUST BAR
-      </span>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-        {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="flex flex-col items-center gap-2 rounded-lg border-2 border-dashed border-border bg-muted/50 p-4">
-            <div className="h-10 w-10 rounded-full border-2 border-dashed border-border bg-muted" />
-            <span className="text-xs font-semibold text-muted-foreground">[BADGE {i}]</span>
+        {badges.map((badge) => (
+          <div key={badge.label} className="flex flex-col items-center gap-2 rounded-lg bg-secondary/50 p-4 text-center">
+            <badge.icon className="h-8 w-8 text-accent" />
+            <span className="text-sm font-semibold text-foreground">{badge.label}</span>
           </div>
         ))}
       </div>

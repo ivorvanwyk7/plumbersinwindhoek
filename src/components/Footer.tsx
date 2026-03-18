@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
+import { Phone, Mail, MapPin } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Footer = () => (
-  <footer className="border-t border-border bg-foreground text-primary-foreground">
+  <footer className="border-t border-border bg-primary text-primary-foreground">
     <div className="container mx-auto grid gap-8 px-4 py-12 md:grid-cols-4">
       <div>
-        <div className="mb-4 text-lg font-bold">[LOGO PLACEHOLDER]</div>
-        <p className="text-sm opacity-70">[COMPANY DESCRIPTION PLACEHOLDER]</p>
+        <img src={logo} alt="061 Plumbers" className="mb-4 h-10 w-auto brightness-0 invert" />
+        <p className="text-sm opacity-70">
+          Your trusted plumbers in Windhoek. Available 24/7 for all your plumbing needs.
+        </p>
       </div>
       <div>
         <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider opacity-70">Navigation</h4>
@@ -28,14 +32,23 @@ const Footer = () => (
       <div>
         <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider opacity-70">Contact</h4>
         <ul className="space-y-2 text-sm">
-          <li className="opacity-70">[PHONE PLACEHOLDER]</li>
-          <li className="opacity-70">[EMAIL PLACEHOLDER]</li>
-          <li className="opacity-70">[ADDRESS PLACEHOLDER]</li>
+          <li className="flex items-center gap-2 opacity-70">
+            <Phone className="h-4 w-4" />
+            <a href="tel:+264857875100" className="hover:opacity-100">+264 85 787 5100</a>
+          </li>
+          <li className="flex items-center gap-2 opacity-70">
+            <Mail className="h-4 w-4" />
+            <span>[EMAIL PLACEHOLDER]</span>
+          </li>
+          <li className="flex items-center gap-2 opacity-70">
+            <MapPin className="h-4 w-4" />
+            <span>Windhoek, Namibia</span>
+          </li>
         </ul>
       </div>
     </div>
     <div className="border-t border-primary-foreground/10 py-4 text-center text-sm opacity-50">
-      [COPYRIGHT PLACEHOLDER] © {new Date().getFullYear()} 061 Plumbers. All rights reserved.
+      © {new Date().getFullYear()} 061 Plumbers. All rights reserved.
     </div>
   </footer>
 );
