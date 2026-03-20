@@ -1,4 +1,6 @@
 import { Clock, FileText, Shield, MapPin, Users } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 interface WhyChooseUsProps {
   count?: number;
@@ -34,29 +36,45 @@ const defaultItems = [
   },
 ];
 
-const WhyChooseUs = ({ heading = "Why Windhoek Homeowners Choose 061 Plumbers", items = defaultItems }: WhyChooseUsProps) => (
-  <section className="w-full bg-secondary/50 py-12 md:py-16">
-    <div className="container mx-auto px-4">
-      <h2 className="mb-8 text-center text-2xl font-bold text-foreground md:text-3xl">
-        {heading}
-      </h2>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {items.map((item, i) => (
-          <div key={i} className="rounded-lg border border-border bg-card p-6 text-center shadow-sm">
-            <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-accent/10">
-              <item.icon className="h-6 w-6 text-accent" />
+const WhyChooseUs = ({ heading = "Why Windhoek Homeowners Choose 061 Plumbers", items = defaultItems }: WhyChooseUsProps) => {
+  const { ref, visible } = useScrollReveal(0.15);
+
+  return (
+    <section ref={ref as React.RefObject<HTMLElement>} className="w-full bg-primary py-16 md:py-24">
+      <div className="container mx-auto px-4">
+        <h2
+          className={cn(
+            "mb-12 text-center text-2xl font-extrabold text-primary-foreground md:text-4xl transition-all duration-600 ease-out",
+            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}
+        >
+          {heading}
+        </h2>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((item, i) => (
+            <div
+              key={i}
+              className={cn(
+                "rounded-2xl border border-primary-foreground/10 bg-primary-foreground/5 p-7 backdrop-blur-sm transition-all duration-500 ease-out hover:bg-primary-foreground/10",
+                visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              )}
+              style={{ transitionDelay: visible ? `${100 + i * 80}ms` : "0ms" }}
+            >
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/20">
+                <item.icon className="h-6 w-6 text-accent" />
+              </div>
+              <h3 className="mb-2 text-lg font-bold text-primary-foreground">
+                {item.title}
+              </h3>
+              <p className="text-sm leading-relaxed text-primary-foreground/70">
+                {item.text}
+              </p>
             </div>
-            <h3 className="mb-2 text-base font-bold text-foreground">
-              {item.title}
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              {item.text}
-            </p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default WhyChooseUs;

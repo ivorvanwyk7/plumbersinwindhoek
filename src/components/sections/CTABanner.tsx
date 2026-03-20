@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Phone } from "lucide-react";
+import { Phone, ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 interface CTABannerProps {
   showSecondary?: boolean;
@@ -8,6 +10,7 @@ interface CTABannerProps {
   text?: string;
   phoneLabel?: string;
   secondaryLabel?: string;
+  backgroundImage?: string;
 }
 
 const CTABanner = ({
@@ -16,32 +19,61 @@ const CTABanner = ({
   text = "Don't let a plumbing problem get worse. Whether it's an emergency or you just need a quote, 061 Plumbers is ready to help — day or night, across all of Windhoek.",
   phoneLabel = "Call +264 85 787 5100",
   secondaryLabel = "Get a Free Quote Online",
-}: CTABannerProps) => (
-  <section className="w-full bg-primary py-12 md:py-16">
-    <div className="container mx-auto px-4 text-center">
-      <div className="mx-auto max-w-2xl">
-        <h2 className="mb-3 text-2xl font-bold text-primary-foreground md:text-3xl">
-          {heading}
-        </h2>
-        <p className="mb-6 text-primary-foreground/80">
-          {text}
-        </p>
-        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button asChild size="lg" variant="secondary">
-            <a href="tel:+264857875100">
-              <Phone className="mr-2 h-4 w-4" />
-              {phoneLabel}
-            </a>
-          </Button>
-          {showSecondary && (
-            <Button asChild size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
-              <Link to="/contact">{secondaryLabel}</Link>
-            </Button>
+  backgroundImage,
+}: CTABannerProps) => {
+  const { ref, visible } = useScrollReveal(0.2);
+
+  return (
+    <section ref={ref as React.RefObject<HTMLElement>} className="relative w-full overflow-hidden py-16 md:py-24">
+      {backgroundImage ? (
+        <div className="absolute inset-0">
+          <img src={backgroundImage} alt="" className="h-full w-full object-cover" loading="lazy" />
+          <div className="absolute inset-0 bg-accent/85" />
+        </div>
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-br from-accent via-accent to-primary" />
+      )}
+      <div className="container relative z-10 mx-auto px-4 text-center">
+        <div
+          className={cn(
+            "mx-auto max-w-2xl transition-all duration-700 ease-out",
+            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           )}
+        >
+          <h2 className="mb-4 text-2xl font-extrabold text-accent-foreground md:text-4xl">
+            {heading}
+          </h2>
+          <p className="mb-8 text-lg text-accent-foreground/80">
+            {text}
+          </p>
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button
+              asChild
+              size="lg"
+              className="h-14 bg-primary-foreground px-8 text-base font-semibold text-primary shadow-lg hover:bg-primary-foreground/90 active:scale-[0.97] transition-transform"
+            >
+              <a href="tel:+264857875100">
+                <Phone className="mr-2 h-5 w-5" />
+                {phoneLabel}
+              </a>
+            </Button>
+            {showSecondary && (
+              <Button
+                asChild
+                size="lg"
+                className="h-14 bg-accent-foreground/15 border-2 border-accent-foreground/40 px-8 text-base font-semibold text-accent-foreground hover:bg-accent-foreground/25 backdrop-blur-sm active:scale-[0.97] transition-transform"
+              >
+                <Link to="/contact">
+                  {secondaryLabel}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default CTABanner;

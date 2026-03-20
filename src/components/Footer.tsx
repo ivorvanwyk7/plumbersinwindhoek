@@ -4,50 +4,64 @@ import logo from "@/assets/logo.png";
 
 const Footer = () => (
   <footer className="border-t border-border bg-primary text-primary-foreground">
-    <div className="container mx-auto grid gap-8 px-4 py-12 md:grid-cols-4">
+    <div className="container mx-auto grid gap-10 px-4 py-14 md:grid-cols-4">
       <div>
         <img src={logo} alt="061 Plumbers" className="mb-4 h-10 w-auto brightness-0 invert" />
-        <p className="text-sm opacity-70">
-          Your trusted plumbers in Windhoek. Available 24/7 for all your plumbing needs.
+        <p className="text-sm leading-relaxed opacity-70">
+          Your trusted plumbers in Windhoek. Available 24/7 for all your plumbing needs — from dripping taps to emergency burst pipes.
         </p>
       </div>
       <div>
-        <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider opacity-70">Navigation</h4>
-        <ul className="space-y-2 text-sm">
-          <li><Link to="/" className="opacity-70 hover:opacity-100">Home</Link></li>
-          <li><Link to="/about-us" className="opacity-70 hover:opacity-100">About Us</Link></li>
-          <li><Link to="/contact" className="opacity-70 hover:opacity-100">Contact</Link></li>
+        <h4 className="mb-4 text-sm font-bold uppercase tracking-wider opacity-50">Navigation</h4>
+        <ul className="space-y-2.5 text-sm">
+          {[
+            { label: "Home", href: "/" },
+            { label: "About Us", href: "/about-us" },
+            { label: "Contact", href: "/contact" },
+          ].map((link) => (
+            <li key={link.href}>
+              <Link to={link.href} className="opacity-70 transition-opacity duration-200 hover:opacity-100">{link.label}</Link>
+            </li>
+          ))}
         </ul>
       </div>
       <div>
-        <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider opacity-70">Services</h4>
-        <ul className="space-y-2 text-sm">
-          <li><Link to="/hvac-geyser-services-windhoek" className="opacity-70 hover:opacity-100">HVAC & Geysers</Link></li>
-          <li><Link to="/drainage-services-windhoek" className="opacity-70 hover:opacity-100">Drainage</Link></li>
-          <li><Link to="/kitchen-plumbing-windhoek" className="opacity-70 hover:opacity-100">Kitchen</Link></li>
-          <li><Link to="/bathroom-renovations-windhoek" className="opacity-70 hover:opacity-100">Bathroom</Link></li>
-          <li><Link to="/emergency-plumbing-windhoek" className="opacity-70 hover:opacity-100">Emergency</Link></li>
+        <h4 className="mb-4 text-sm font-bold uppercase tracking-wider opacity-50">Services</h4>
+        <ul className="space-y-2.5 text-sm">
+          {[
+            { label: "HVAC & Geysers", href: "/hvac-geyser-services-windhoek" },
+            { label: "Drainage", href: "/drainage-services-windhoek" },
+            { label: "Kitchen", href: "/kitchen-plumbing-windhoek" },
+            { label: "Bathroom", href: "/bathroom-renovations-windhoek" },
+            { label: "Emergency 24/7", href: "/emergency-plumbing-windhoek" },
+          ].map((link) => (
+            <li key={link.href}>
+              <Link to={link.href} className="opacity-70 transition-opacity duration-200 hover:opacity-100">{link.label}</Link>
+            </li>
+          ))}
         </ul>
       </div>
       <div>
-        <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider opacity-70">Contact</h4>
-        <ul className="space-y-2 text-sm">
-          <li className="flex items-center gap-2 opacity-70">
-            <Phone className="h-4 w-4" />
-            <a href="tel:+264857875100" className="hover:opacity-100">+264 85 787 5100</a>
+        <h4 className="mb-4 text-sm font-bold uppercase tracking-wider opacity-50">Contact</h4>
+        <ul className="space-y-3 text-sm">
+          <li>
+            <a href="tel:+264857875100" className="flex items-center gap-2.5 opacity-70 transition-opacity duration-200 hover:opacity-100">
+              <Phone className="h-4 w-4 shrink-0" />
+              +264 85 787 5100
+            </a>
           </li>
-          <li className="flex items-center gap-2 opacity-70">
-            <Mail className="h-4 w-4" />
-            <span>[EMAIL PLACEHOLDER]</span>
+          <li className="flex items-center gap-2.5 opacity-70">
+            <Mail className="h-4 w-4 shrink-0" />
+            <span>info@061plumbers.com</span>
           </li>
-          <li className="flex items-center gap-2 opacity-70">
-            <MapPin className="h-4 w-4" />
+          <li className="flex items-center gap-2.5 opacity-70">
+            <MapPin className="h-4 w-4 shrink-0" />
             <span>Windhoek, Namibia</span>
           </li>
         </ul>
       </div>
     </div>
-    <div className="border-t border-primary-foreground/10 py-4 text-center text-sm opacity-50">
+    <div className="border-t border-primary-foreground/10 py-5 text-center text-sm opacity-40">
       © {new Date().getFullYear()} 061 Plumbers. All rights reserved.
     </div>
   </footer>
