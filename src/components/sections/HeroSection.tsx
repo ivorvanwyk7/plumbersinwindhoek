@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Phone } from "lucide-react";
+import { Phone, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useEffect, useRef, useState } from "react";
 
 interface HeroSectionProps {
   emergency?: boolean;
@@ -11,6 +12,7 @@ interface HeroSectionProps {
   primaryHref?: string;
   secondaryLabel?: string;
   secondaryHref?: string;
+  backgroundImage?: string;
 }
 
 const HeroSection = ({
@@ -21,41 +23,128 @@ const HeroSection = ({
   primaryHref = "tel:+264857875100",
   secondaryLabel = "Get a Free Quote",
   secondaryHref = "/contact",
-}: HeroSectionProps) => (
-  <section
-    className={cn(
-      "w-full py-16 md:py-24",
-      emergency ? "bg-destructive/10" : "bg-primary/5"
-    )}
-  >
-    <div className="container mx-auto px-4 text-center">
-      <div className="mx-auto max-w-3xl">
-        <h1 className="mb-4 text-3xl font-bold leading-tight text-foreground md:text-5xl">
-          {headline}
-        </h1>
-        <p className="mb-8 text-lg text-muted-foreground">
-          {subheadline}
-        </p>
-        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-          {primaryHref.startsWith("tel:") ? (
-            <Button asChild size="lg" variant={emergency ? "destructive" : "default"}>
-              <a href={primaryHref}>
-                <Phone className="mr-2 h-4 w-4" />
-                {primaryLabel}
-              </a>
-            </Button>
-          ) : (
-            <Button asChild size="lg" variant={emergency ? "destructive" : "default"}>
-              <Link to={primaryHref}>{primaryLabel}</Link>
-            </Button>
+  backgroundImage,
+}: HeroSectionProps) => {
+  const ref = useRef<HTMLElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setVisible(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <section
+      ref={ref}
+      className={cn(
+        "relative w-full overflow-hidden",
+        emergency ? "py-16 md:py-24" : "py-20 md:py-32"
+      )}
+    >
+      {/* Background */}
+      {backgroundImage && (
+        <div className="absolute inset-0">
+          <img
+            src={backgroundImage}
+            alt=""
+            className="h-full w-full object-cover"
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-primary/80" />
+        </div>
+      )}
+      {!backgroundImage && (
+        <div
+          className={cn(
+            "absolute inset-0",
+            emergency
+              ? "bg-gradient-to-br from-destructive/10 via-destructive/5 to-background"
+              : "bg-gradient-to-br from-primary via-primary/95 to-accent/80"
           )}
-          <Button asChild size="lg" variant="outline">
-            <Link to={secondaryHref}>{secondaryLabel}</Link>
-          </Button>
+        />
+      )}
+
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="mx-auto max-w-3xl text-center">
+          <h1
+            className={cn(
+              "mb-6 text-3xl font-extrabold leading-[1.1] tracking-tight md:text-5xl lg:text-6xl transition-all duration-700 ease-out",
+              backgroundImage || !emergency
+                ? "text-primary-foreground"
+                : "text-foreground",
+              visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            )}
+          >
+            {headline}
+          </h1>
+          <p
+            className={cn(
+              "mx-auto mb-10 max-w-2xl text-lg leading-relaxed md:text-xl transition-all duration-700 ease-out delay-150",
+              backgroundImage || !emergency
+                ? "text-primary-foreground/80"
+                : "text-muted-foreground",
+              visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            )}
+          >
+            {subheadline}
+          </p>
+          <div
+            className={cn(
+              "flex flex-col items-center justify-center gap-4 sm:flex-row transition-all duration-700 ease-out delay-300",
+              visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            )}
+          >
+            {primaryHref.startsWith("tel:") ? (
+              <Button
+                asChild
+                size="lg"
+                className={cn(
+                  "h-14 px-8 text-base font-semibold shadow-lg active:scale-[0.97] transition-transform",
+                  emergency
+                    ? "bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                    : "bg-accent text-accent-foreground hover:bg-accent/90"
+                )}
+              >
+                <a href={primaryHref}>
+                  <Phone className="mr-2 h-5 w-5" />
+                  {primaryLabel}
+                </a>
+              </Button>
+            ) : (
+              <Button
+                asChild
+                size="lg"
+                className={cn(
+                  "h-14 px-8 text-base font-semibold shadow-lg active:scale-[0.97] transition-transform",
+                  emergency
+                    ? "bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                    : "bg-accent text-accent-foreground hover:bg-accent/90"
+                )}
+              >
+                <Link to={primaryHref}>{primaryLabel}</Link>
+              </Button>
+            )}
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className={cn(
+                "h-14 px-8 text-base font-semibold active:scale-[0.97] transition-transform",
+                backgroundImage || !emergency
+                  ? "border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+                  : ""
+              )}
+            >
+              <Link to={secondaryHref}>
+                {secondaryLabel}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default HeroSection;
