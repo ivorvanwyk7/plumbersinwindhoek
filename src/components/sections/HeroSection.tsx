@@ -127,12 +127,11 @@ const HeroSection = ({
             <Button
               asChild
               size="lg"
-              variant="outline"
               className={cn(
                 "h-14 px-8 text-base font-semibold active:scale-[0.97] transition-transform",
                 backgroundImage || !emergency
-                  ? "border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
-                  : ""
+                  ? "bg-primary-foreground/15 border-2 border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/25 backdrop-blur-sm"
+                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
               )}
             >
               <Link to={secondaryHref}>

@@ -61,8 +61,7 @@ const CTABanner = ({
               <Button
                 asChild
                 size="lg"
-                variant="outline"
-                className="h-14 border-accent-foreground/30 px-8 text-base font-semibold text-accent-foreground hover:bg-accent-foreground/10 active:scale-[0.97] transition-transform"
+                className="h-14 bg-accent-foreground/15 border-2 border-accent-foreground/40 px-8 text-base font-semibold text-accent-foreground hover:bg-accent-foreground/25 backdrop-blur-sm active:scale-[0.97] transition-transform"
               >
                 <Link to="/contact">
                   {secondaryLabel}
