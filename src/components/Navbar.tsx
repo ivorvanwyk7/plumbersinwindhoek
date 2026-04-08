@@ -54,7 +54,7 @@ const Navbar = () => {
           </Button>
           <button
             onClick={() => setOpen(!open)}
-            className="rounded-lg p-2 text-foreground hover:bg-muted transition-colors lg:hidden"
+            className="rounded-lg p-2 text-white hover:bg-white/10 transition-colors lg:hidden"
             aria-label="Toggle menu"
           >
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
