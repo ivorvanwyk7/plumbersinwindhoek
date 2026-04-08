@@ -65,7 +65,7 @@ const Navbar = () => {
       {/* Mobile menu */}
       <div
         className={cn(
-          "overflow-hidden border-t border-border/50 bg-card transition-all duration-300 ease-out lg:hidden",
+          "overflow-hidden border-t border-white/10 bg-[hsl(220,30%,20%)] transition-all duration-300 ease-out lg:hidden",
           open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0 border-t-0"
         )}
       >
