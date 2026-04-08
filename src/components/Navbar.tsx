@@ -78,8 +78,8 @@ const Navbar = () => {
               className={cn(
                 "block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                 location.pathname === link.href
-                  ? "text-accent bg-accent/5"
-                  : "text-foreground/70 hover:bg-muted hover:text-accent"
+                  ? "text-[hsl(201,84%,55%)] bg-white/5"
+                  : "text-white/70 hover:bg-white/10 hover:text-[hsl(201,84%,55%)]"
               )}
             >
               {link.label}

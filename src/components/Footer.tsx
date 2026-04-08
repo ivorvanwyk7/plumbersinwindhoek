@@ -61,7 +61,7 @@ const Footer = () => (
         </ul>
       </div>
     </div>
-    <div className="border-t border-primary-foreground/10 py-5 text-center text-sm opacity-40">
+    <div className="border-t border-white/10 py-5 text-center text-sm opacity-40">
       © {new Date().getFullYear()} 061 Plumbers. All rights reserved.
     </div>
   </footer>
