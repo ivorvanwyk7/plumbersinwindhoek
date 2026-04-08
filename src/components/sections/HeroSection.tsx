@@ -50,7 +50,14 @@ const HeroSection = ({
             className="h-full w-full object-cover"
             loading="eager"
           />
-          <div className="absolute inset-0 bg-primary/80" />
+          <div
+            className={cn(
+              "absolute inset-0",
+              emergency
+                ? "bg-gradient-to-r from-black/85 via-black/70 to-destructive/40"
+                : "bg-primary/80"
+            )}
+          />
         </div>
       )}
       {!backgroundImage && (
@@ -69,9 +76,11 @@ const HeroSection = ({
           <h1
             className={cn(
               "mb-6 text-3xl font-extrabold leading-[1.1] tracking-tight md:text-5xl lg:text-6xl transition-all duration-700 ease-out",
-              backgroundImage || !emergency
+              backgroundImage
                 ? "text-primary-foreground"
-                : "text-foreground",
+                : emergency
+                  ? "text-foreground"
+                  : "text-primary-foreground",
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             )}
           >
@@ -80,9 +89,11 @@ const HeroSection = ({
           <p
             className={cn(
               "mx-auto mb-10 max-w-2xl text-lg leading-relaxed md:text-xl transition-all duration-700 ease-out delay-150",
-              backgroundImage || !emergency
+              backgroundImage
                 ? "text-primary-foreground/80"
-                : "text-muted-foreground",
+                : emergency
+                  ? "text-muted-foreground"
+                  : "text-primary-foreground/80",
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             )}
           >
@@ -129,9 +140,11 @@ const HeroSection = ({
               size="lg"
               className={cn(
                 "h-14 px-8 text-base font-semibold active:scale-[0.97] transition-transform",
-                backgroundImage || !emergency
+                backgroundImage
                   ? "bg-primary-foreground/15 border-2 border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/25 backdrop-blur-sm"
-                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                  : emergency
+                    ? "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                    : "bg-primary-foreground/15 border-2 border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/25 backdrop-blur-sm"
               )}
             >
               <Link to={secondaryHref}>

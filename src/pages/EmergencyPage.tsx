@@ -7,6 +7,9 @@ import CoverageArea from "@/components/sections/CoverageArea";
 import CTABanner from "@/components/sections/CTABanner";
 import { Wrench, Droplets, PipetteIcon, Disc, ShowerHead } from "lucide-react";
 import { Clock, Zap, FileText, Shield, Smile } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import emergencyHero from "@/assets/emergency-hero.jpg";
 
 const emergencyServices = [
   {
@@ -58,6 +61,10 @@ const emergencySteps = [
     title: "Take photos of the damage",
     text: "Document everything for insurance purposes before any cleanup begins.",
   },
+  {
+    title: "Call 061 Plumbers on +264 85 787 5100",
+    text: "We'll guide you through anything else while we're on our way.",
+  },
 ];
 
 const whyChooseItems = [
@@ -96,11 +103,53 @@ const coverageAreas = [
   "Southern suburbs and surrounding areas",
 ];
 
+const IntroSection = () => {
+  const { ref, visible } = useScrollReveal(0.15);
+  return (
+    <section ref={ref as React.RefObject<HTMLElement>} className="w-full py-14 md:py-20">
+      <div className="container mx-auto px-4">
+        <div
+          className={cn(
+            "mx-auto max-w-3xl text-center transition-all duration-700 ease-out",
+            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          )}
+        >
+          <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
+            Plumbing emergencies have terrible timing. A burst pipe doesn't wait for Monday morning, and a blocked toilet won't fix itself overnight. That's exactly why 061 Plumbers operates 24 hours a day, 7 days a week — including weekends and public holidays — so that Windhoek homeowners always have someone reliable to call.
+          </p>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground md:text-xl">
+            We arrive quickly, assess the situation honestly, and get to work straight away. No call-out fees hidden in the fine print, no waiting days for a callback. Just fast, friendly plumbing help when you need it most.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const EmergencyPage = () => (
   <>
     <Helmet>
       <title>Emergency Plumber Windhoek | 24/7 Call-Out | 061 Plumbers</title>
       <meta name="description" content="Need an emergency plumber in Windhoek? 061 Plumbers is available 24/7 for burst pipes, leaks, blocked toilets and more. Call +264 85 787 5100 now — we respond fast." />
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "EmergencyService",
+          name: "061 Plumbers — Emergency Plumbing",
+          description: "24/7 emergency plumber in Windhoek, Namibia. Burst pipes, leaks, blocked toilets and more.",
+          telephone: "+264857875100",
+          areaServed: {
+            "@type": "City",
+            name: "Windhoek",
+          },
+          openingHoursSpecification: {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            opens: "00:00",
+            closes: "23:59",
+          },
+        })}
+      </script>
     </Helmet>
 
     <HeroSection
@@ -111,18 +160,10 @@ const EmergencyPage = () => (
       primaryHref="tel:+264857875100"
       secondaryLabel="Get a Free Quote"
       secondaryHref="/contact"
+      backgroundImage={emergencyHero}
     />
 
-    {/* Introduction */}
-    <section className="w-full py-12 md:py-16">
-      <div className="container mx-auto px-4">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-lg leading-relaxed text-muted-foreground">
-            Plumbing emergencies have terrible timing. A burst pipe doesn't wait for Monday morning, and a blocked toilet won't fix itself overnight. That's exactly why 061 Plumbers operates 24 hours a day, 7 days a week — including weekends and public holidays — so that Windhoek homeowners always have someone reliable to call. We arrive quickly, assess the situation honestly, and get to work straight away. No call-out fees hidden in the fine print, no waiting days for a callback. Just fast, friendly plumbing help when you need it most.
-          </p>
-        </div>
-      </div>
-    </section>
+    <IntroSection />
 
     <ServicesGrid
       cards={emergencyServices}
@@ -131,13 +172,13 @@ const EmergencyPage = () => (
     />
 
     <NumberedSteps
-      label="What To Do In A Plumbing Emergency"
+      label="What To Do When You Have a Plumbing Emergency"
       intro="While you wait for us to arrive, here are a few steps that can help limit the damage:"
       steps={emergencySteps}
     />
 
     <WhyChooseUs
-      heading="Why Choose 061 Plumbers for Emergencies"
+      heading="Why Windhoek Homeowners Trust 061 Plumbers in an Emergency"
       items={whyChooseItems}
     />
 
