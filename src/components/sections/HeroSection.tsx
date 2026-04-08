@@ -50,7 +50,14 @@ const HeroSection = ({
             className="h-full w-full object-cover"
             loading="eager"
           />
-          <div className="absolute inset-0 bg-primary/80" />
+          <div
+            className={cn(
+              "absolute inset-0",
+              emergency
+                ? "bg-gradient-to-r from-black/85 via-black/70 to-destructive/40"
+                : "bg-primary/80"
+            )}
+          />
         </div>
       )}
       {!backgroundImage && (
