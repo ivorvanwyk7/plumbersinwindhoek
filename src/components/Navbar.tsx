@@ -21,10 +21,10 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border/50 bg-card/95 backdrop-blur-md shadow-sm">
+    <nav className="sticky top-0 z-50 border-b border-border/50 bg-[hsl(220,30%,20%)] backdrop-blur-md shadow-sm">
       <div className="container mx-auto flex items-center justify-between px-4 py-3">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="061 Plumbers" className="h-10 w-auto" />
+          <img src={logo} alt="061 Plumbers" className="h-14 w-auto" />
         </Link>
 
         {/* Desktop nav */}
@@ -34,10 +34,10 @@ const Navbar = () => {
               key={link.href}
               to={link.href}
               className={cn(
-                "rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 hover:text-accent",
+                "rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 hover:text-[hsl(201,84%,55%)]",
                 location.pathname === link.href
-                  ? "text-accent bg-accent/5"
-                  : "text-foreground/70 hover:bg-muted"
+                  ? "text-[hsl(201,84%,55%)] bg-white/5"
+                  : "text-white/70 hover:bg-white/10"
               )}
             >
               {link.label}
@@ -54,7 +54,7 @@ const Navbar = () => {
           </Button>
           <button
             onClick={() => setOpen(!open)}
-            className="rounded-lg p-2 text-foreground hover:bg-muted transition-colors lg:hidden"
+            className="rounded-lg p-2 text-white hover:bg-white/10 transition-colors lg:hidden"
             aria-label="Toggle menu"
           >
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -65,7 +65,7 @@ const Navbar = () => {
       {/* Mobile menu */}
       <div
         className={cn(
-          "overflow-hidden border-t border-border/50 bg-card transition-all duration-300 ease-out lg:hidden",
+          "overflow-hidden border-t border-white/10 bg-[hsl(220,30%,20%)] transition-all duration-300 ease-out lg:hidden",
           open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0 border-t-0"
         )}
       >
@@ -78,8 +78,8 @@ const Navbar = () => {
               className={cn(
                 "block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                 location.pathname === link.href
-                  ? "text-accent bg-accent/5"
-                  : "text-foreground/70 hover:bg-muted hover:text-accent"
+                  ? "text-[hsl(201,84%,55%)] bg-white/5"
+                  : "text-white/70 hover:bg-white/10 hover:text-[hsl(201,84%,55%)]"
               )}
             >
               {link.label}

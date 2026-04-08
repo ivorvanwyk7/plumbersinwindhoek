@@ -3,10 +3,10 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const Footer = () => (
-  <footer className="border-t border-border bg-primary text-primary-foreground">
+  <footer className="border-t border-white/10 bg-[hsl(220,30%,15%)] text-white">
     <div className="container mx-auto grid gap-10 px-4 py-14 md:grid-cols-4">
       <div>
-        <img src={logo} alt="061 Plumbers" className="mb-4 h-10 w-auto brightness-0 invert" />
+        <img src={logo} alt="061 Plumbers" className="mb-4 h-16 w-auto" />
         <p className="text-sm leading-relaxed opacity-70">
           Your trusted plumbers in Windhoek. Available 24/7 for all your plumbing needs — from dripping taps to emergency burst pipes.
         </p>
@@ -61,7 +61,7 @@ const Footer = () => (
         </ul>
       </div>
     </div>
-    <div className="border-t border-primary-foreground/10 py-5 text-center text-sm opacity-40">
+    <div className="border-t border-white/10 py-5 text-center text-sm opacity-40">
       © {new Date().getFullYear()} 061 Plumbers. All rights reserved.
     </div>
   </footer>
