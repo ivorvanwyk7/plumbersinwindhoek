@@ -89,9 +89,11 @@ const HeroSection = ({
           <p
             className={cn(
               "mx-auto mb-10 max-w-2xl text-lg leading-relaxed md:text-xl transition-all duration-700 ease-out delay-150",
-              backgroundImage || !emergency
+              backgroundImage
                 ? "text-primary-foreground/80"
-                : "text-muted-foreground",
+                : emergency
+                  ? "text-muted-foreground"
+                  : "text-primary-foreground/80",
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             )}
           >
