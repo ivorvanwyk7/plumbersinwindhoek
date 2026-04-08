@@ -21,10 +21,10 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border/50 bg-card/95 backdrop-blur-md shadow-sm">
+    <nav className="sticky top-0 z-50 border-b border-border/50 bg-[hsl(220,30%,20%)] backdrop-blur-md shadow-sm">
       <div className="container mx-auto flex items-center justify-between px-4 py-3">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="061 Plumbers" className="h-10 w-auto" />
+          <img src={logo} alt="061 Plumbers" className="h-14 w-auto" />
         </Link>
 
         {/* Desktop nav */}
