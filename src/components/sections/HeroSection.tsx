@@ -140,9 +140,11 @@ const HeroSection = ({
               size="lg"
               className={cn(
                 "h-14 px-8 text-base font-semibold active:scale-[0.97] transition-transform",
-                backgroundImage || !emergency
+                backgroundImage
                   ? "bg-primary-foreground/15 border-2 border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/25 backdrop-blur-sm"
-                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                  : emergency
+                    ? "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                    : "bg-primary-foreground/15 border-2 border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/25 backdrop-blur-sm"
               )}
             >
               <Link to={secondaryHref}>
