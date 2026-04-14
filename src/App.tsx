@@ -18,6 +18,7 @@ import DrainageServicePage from "./pages/DrainageServicePage";
 import BathroomServicePage from "./pages/BathroomServicePage";
 import EmergencyServicePage from "./pages/EmergencyServicePage";
 import BurstPipeRepairPage from "./pages/BurstPipeRepairPage";
+import LeakRepairPage from "./pages/LeakRepairPage";
 import TapInstallationPage from "./pages/TapInstallationPage";
 import TapRepairPage from "./pages/TapRepairPage";
 import ToiletUnblockingPage from "./pages/ToiletUnblockingPage";
@@ -43,6 +44,7 @@ const App = () => (
             <Route path="/bathroom-renovations-windhoek/:slug" element={<BathroomServicePage />} />
             <Route path="/emergency-plumbing-windhoek" element={<EmergencyPage />} />
             <Route path="/emergency-plumbing-windhoek/burst-pipe-repair" element={<BurstPipeRepairPage />} />
+            <Route path="/emergency-plumbing-windhoek/leak-repair" element={<LeakRepairPage />} />
             <Route path="/emergency-plumbing-windhoek/:slug" element={<EmergencyServicePage />} />
             <Route path="/about-us" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
