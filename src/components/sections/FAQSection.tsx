@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import JsonLd from "@/components/JsonLd";
 
 interface FAQItem {
   question: string;
@@ -20,8 +21,22 @@ interface FAQSectionProps {
 const FAQSection = ({ heading = "Frequently Asked Questions", items }: FAQSectionProps) => {
   const { ref, visible } = useScrollReveal(0.15);
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <section ref={ref as React.RefObject<HTMLElement>} className="w-full py-16 md:py-24">
+      <JsonLd data={faqSchema} />
       <div className="container mx-auto px-4">
         <h2
           className={cn(

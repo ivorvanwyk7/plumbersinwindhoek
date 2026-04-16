@@ -5,6 +5,7 @@ import ServicesGrid from "@/components/sections/ServicesGrid";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import Testimonials from "@/components/sections/Testimonials";
 import CTABanner from "@/components/sections/CTABanner";
+import JsonLd from "@/components/JsonLd";
 import heroImage from "@/assets/hero-plumber.jpg";
 import windhoekImage from "@/assets/windhoek-cityscape.jpg";
 import serviceGeyser from "@/assets/service-geyser.jpg";
@@ -95,6 +96,14 @@ const HomePage = () => (
       <title>061 Plumbers — Your Trusted Plumbers in Windhoek | Available 24/7</title>
       <meta name="description" content="Got a plumbing problem in Windhoek? 061 Plumbers is here to help. From leaky taps and blocked drains to emergency burst pipes — available 24/7. Call +264 85 787 5100." />
     </Helmet>
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "061 Plumbers",
+        url: "https://061plumbers.com",
+      }}
+    />
 
     <HeroSection
       backgroundImage={heroImage}
