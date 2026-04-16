@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import JsonLd from "@/components/JsonLd";
 import HeroSection from "@/components/sections/HeroSection";
 import TrustBar from "@/components/sections/TrustBar";
 import ServicesGrid from "@/components/sections/ServicesGrid";
@@ -96,6 +97,14 @@ const HomePage = () => (
       <meta name="description" content="Got a plumbing problem in Windhoek? 061 Plumbers is here to help. From leaky taps and blocked drains to emergency burst pipes — available 24/7. Call +264 85 787 5100." />
     </Helmet>
 
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "061 Plumbers",
+        url: "https://plumbersinwindhoek.lovable.app",
+      }}
+    />
     <HeroSection
       backgroundImage={heroImage}
       primaryLabel="Call Us Now — +264 85 787 5100"
