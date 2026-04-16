@@ -22,6 +22,7 @@ import LeakRepairPage from "./pages/LeakRepairPage";
 import TapInstallationPage from "./pages/TapInstallationPage";
 import TapRepairPage from "./pages/TapRepairPage";
 import ToiletUnblockingPage from "./pages/ToiletUnblockingPage";
+import GeyserRepairPage from "./pages/GeyserRepairPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
