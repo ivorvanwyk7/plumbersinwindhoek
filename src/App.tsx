@@ -22,6 +22,7 @@ import LeakRepairPage from "./pages/LeakRepairPage";
 import TapInstallationPage from "./pages/TapInstallationPage";
 import TapRepairPage from "./pages/TapRepairPage";
 import ToiletUnblockingPage from "./pages/ToiletUnblockingPage";
+import GeyserRepairPage from "./pages/GeyserRepairPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ const App = () => (
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/hvac-geyser-services-windhoek" element={<HvacPage />} />
+            <Route path="/hvac-geyser-services-windhoek/geyser-repairs" element={<GeyserRepairPage />} />
             <Route path="/hvac-geyser-services-windhoek/:slug" element={<HvacServicePage />} />
             <Route path="/drainage-services-windhoek" element={<DrainagePage />} />
             <Route path="/drainage-services-windhoek/:slug" element={<DrainageServicePage />} />
